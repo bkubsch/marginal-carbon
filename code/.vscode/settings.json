@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "/home/bastian/Environment/DSR_portfolio/bin/python",
+    "python.dataScience.sendSelectionToInteractiveWindow": true,
+    "python.linting.enabled": true,
+}
