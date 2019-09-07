@@ -2,6 +2,11 @@ import requests
 import bs4
 import os
 
+import logging
+import sys
+import zipfile
+
+
 def outer_NEM_scraper():
     url_cond = []
     def NEM_scraper(urls, href_identifier=None,a=None,b=None,c=None):
@@ -30,5 +35,31 @@ def outer_NEM_scraper():
             url_cond.append(url)
     return url_cond
 
-def meh(name="Geht immer"):
-    print(name)
+
+
+def extract_zip_from_url(url, output_path):
+    month = url[-17:-8]
+    output_folder = os.path.join(output_path, month)
+    os.makedirs(output_folder, exist_ok=True)
+    logging.info('downloading {}'.format(url))
+    mms = os.path.join(output_folder, 'mmsdm.zip')
+    with open(mms, 'wb') as f:
+        response = requests.get(url, headers=header, stream=True)
+        total_length = response.headers.get('content-length')
+        if total_length is None:
+            f.write(response.content)
+        else:
+            dl = 0
+            total_length = int(total_length)
+            for data in response.iter_content(chunk_size=4096):
+                dl += len(data)
+                f.write(data)
+                done = int(50 * dl / total_length)
+                sys.stdout.write('\r {}% [{}{}]'.format(2*done, '+'*done, ' '*(50-done)))
+                sys.stdout.flush()
+
+    logging.info('extracting {}'.format(url))
+    
+    #unzipping of zip from previous block
+    with zipfile.ZipFile(mms, 'r') as my_zipfile:
+        my_zipfile.extractall(output_folder)
