@@ -3,7 +3,7 @@ import glob
 import os
 import xml.etree.ElementTree as ET
 
-def parse_xml_to_dataframe(path_chunks, path_destination):
+def xml_to_dataframe(path_chunks, path_destination):
     '''
     Divide whole dataset into chunks procssable for available computing power.
     E.g. divide 10,000 files into 10 x 1000 files chunks. Per chunk, prepare one folder for 1000 files each time (here: 10 folders)
