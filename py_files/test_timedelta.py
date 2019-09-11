@@ -3,7 +3,8 @@ import pandas as pd
 def correct_timedelta(df, time_diff):
     '''
     df.index must be DateTimeIndex
-    table=table_of_interest
+    Returns two lists
+    df=table_of_interest
     col="column_of_interest"
     time_diff=time_diff in seconds as int
     '''
