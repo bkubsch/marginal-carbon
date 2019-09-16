@@ -1,5 +1,3 @@
-import pandas as pd
-
 def correct_timedelta(df, time_diff):
     '''
     df.index must be DateTimeIndex
@@ -10,13 +8,11 @@ def correct_timedelta(df, time_diff):
     '''
     lst = []
     lst_i = []
-    count = 0
-    for i in df.index:
-        count += 1
-        if count >= len(df):
-            break
-        delta = abs(df.index[count] - df.index[count-1])
+    
+    for i in range(1,df.shape[0]):
+        delta = abs(df.index[i] - df.index[i-1])
         if int(delta.total_seconds()) != int(time_diff):
-            lst.append(("from index {} on, it has been {} s or {} h.".format(count-1,int(delta.total_seconds()),(int(delta.total_seconds()/3600)))))
-            lst_i.append((count-1,int(delta.total_seconds())))
+            lst.append(("from index {} on, it has been {} s or {} h.".format(i,int(delta.total_seconds()),(int(delta.total_seconds()/3600)))))
+            lst_i.append((df.index[i],int(delta.total_seconds())))
+            
     return lst, lst_i

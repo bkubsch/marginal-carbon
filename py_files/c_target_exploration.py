@@ -15,11 +15,11 @@ def mod_concat_NEMDE(file_path):
     df.rename(columns={"Unit":"DUID"}, inplace=True)
     df.sort_index(inplace=True, ascending=False)
     df.index = df.index - dt.timedelta(minutes = 5)
-    df = df.loc[df.index < dt.datetime(2018,8,1), :]
+    df.rename(columns={"Unit":"DUID"}, inplace=True)
     
     assert df["Price"].dtype == float
     assert df["Increase"].dtype == float
-    assert df.isna().any().any() == False
+    assert not df.isna().any().any()
     
     return df
 
