@@ -1,0 +1,2 @@
+Model,Feature Description,Model Description,Training error,Test error,Difference_train_test_error
+XGBoost,"sine_cosine, lag_12, horizon=0, demand, capacity, interconnectors","{'eta': 0.3, 'max_depth': 5, 'min_child_weight': 0.2, 'n_estimators': 100, 'reg_alpha': 0.05, 'reg_lambda': 0}",0.3225704041708461,0.3206863935546782,0.001884010616167886

@@ -1,0 +1,2 @@
+Model,Feature Description,Model Description,Training error,Test error,Difference_train_test_error
+XGBoost,"sine_cosine, lag_12, horizon=0, demand, capacity","{'eta': 0.3, 'max_depth': 5}",0.325431639321211,0.301062340333315,0.024369298987897
